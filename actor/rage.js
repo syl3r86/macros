@@ -125,7 +125,8 @@ if (actor !== undefined && actor !== null) {
 			// determining the barbarian level
 			let barblvl = barb.data.data.levels;
 			// the formula to determin the rage bonus damage depending on barbarian level
-			let ragedmg = 2 + Math.floor(barblvl / 9) - (barblvl === 8 ? 1 : 0);
+			let lvlCorrection = barblvl === 16 || barblvl === 17 ? 1 : 0;
+			let ragedmg = 2 + Math.floor(barblvl / 9) + lvlCorrection;
 			for (let item of actor.items) {
 				let isMelee = getProperty(item, 'data.data.actionType') === 'mwak';
 				if (isMelee && item.data.data.damage.parts.length > 0) {
